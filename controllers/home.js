@@ -42,8 +42,8 @@ const articleController = {
                 res.send(err);
                 return;
             }
-            // console.log('fields:', fields);
-            // console.log('files:', files);
+            console.log('fields:', fields);
+            console.log('files:', files);
             let otherData = fields;
 
             // console.log(Object.keys(files).length);
@@ -140,7 +140,7 @@ const articleController = {
                     otherData = { 'article_id': article_id, ...otherData, imgs }
                     console.log(otherData);
                     Article.create(otherData);
-                    res.send(otherData);
+                    res.send("上传成功");
                 });
             }
         });
