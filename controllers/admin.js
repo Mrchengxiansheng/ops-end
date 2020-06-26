@@ -16,7 +16,6 @@ const adminController = {
     async deleteOneArticle(req, res) {
         console.log(req.params.id);
         await Article.deleteOne({ article_id: req.params.id });
-        // console.log(oneArticleData);
         res.send("删除成功");
     },
 
