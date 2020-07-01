@@ -7,6 +7,7 @@ const Article = require('../model/index');
 const adminController = {
     async getAllArticle(req, res) {
         const articleData = await Article.find({});
+        // res.set('Cache-Control','public,max-age=300');
         res.send({
             flag: true,
             articleData: articleData

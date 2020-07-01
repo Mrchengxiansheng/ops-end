@@ -22,6 +22,8 @@ app.all('/*', function(req, res, next) {
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   // Set custom headers for CORS
   res.header('Access-Control-Allow-Headers', 'Content-type,Accept,X-Access-Token,X-Key');
+  //设置强缓存时间
+  res.header('Cache-Control', 'max-age=300'); 
   if (req.method == 'OPTIONS') {
     res.status(200).end();
   } else {
@@ -33,7 +35,20 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+
+// const options={
+//   etag: false, // 禁用协商缓存
+//   lastModified: false, // 禁用协商缓存
+//   immutable: true,
+//   // maxAge: '5m'
+//   setHeaders: (res, path, stat) => {
+//     res.set('Cache-Control', 'max-age=300'); // 强缓存超时时间为10秒
+//   },
+// }
 app.use(express.static(path.join(__dirname, 'public')));
+
+// app.use(express.static(path.join(__dirname, 'public/images'),options));
 
 app.use('/', indexRouter);
 app.use('/mb', mbRouter);
